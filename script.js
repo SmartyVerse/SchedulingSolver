@@ -192,7 +192,7 @@ function SJF_Preemptive(procs) {
             }
             
             const lastBlock = ganttChart[ganttChart.length - 1];
-            if (lastBlock && lastBlock.id === p.id && lastBlock.end === currentTime) {
+            if (lastBlock && lastBlock.id === p.id && lastBlock.end === currentTime) { 
                 lastBlock.end++;
             } else {
                 ganttChart.push({ id: p.id, start: currentTime, end: currentTime + 1 });
@@ -243,7 +243,7 @@ function RoundRobin(procs, quantum) {
         }
 
         const lastBlock = ganttChart[ganttChart.length - 1];
-        if (lastBlock && lastBlock.id === p.id && lastBlock.end === startTime) {
+        if (lastBlock && lastBlock.id === p.id && lastBlock.end === startTime) { 
             lastBlock.end += executeTime;
         } else {
             ganttChart.push({ id: p.id, start: startTime, end: startTime + executeTime });
