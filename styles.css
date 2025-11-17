@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #e9ecef;
+}
+
+#controls button, #algorithm-selection button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#algorithm-selection {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#gantt-chart {
+    display: flex;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+    padding-top: 25px; 
+    margin-bottom: 30px;
+    position: relative;
+    min-height: 80px; 
+}
+
+.gantt-block {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-right: 1px solid #000;
+    box-sizing: border-box;
+    flex-shrink: 0; 
+    position: relative;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.gantt-time {
+    position: absolute;
+    top: 0; 
+    font-size: 12px;
+    color: #333;
+    white-space: nowrap;
+    transform: translateX(-50%); 
+}
+
+/* Base Time Marker: 0 */
+#gantt-chart::before {
+    content: "0";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #333;
+}
+
+/* Color coding for processes */
+.P1 { background-color: #ff6347; }
+.P2 { background-color: #4682b4; }
+.P3 { background-color: #3cb371; }
+.P4 { background-color: #ffd700; }
+.P5 { background-color: #9370db; }
+.P6 { background-color: #ff8c00; }
+.P7 { background-color: #6a5acd; }
+.P8 { background-color: #20b2aa; }
+.P9 { background-color: #dc143c; }
+.P10 { background-color: #f08080; }
+
+.hidden {
+    display: none;
+}
