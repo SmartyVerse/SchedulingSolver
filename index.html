@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>CPU Scheduling Algorithm Solver</h1>
+    </header>
+    <main>
+        <section id="input-section">
+            <h2>Process Input</h2>
+            <div id="controls">
+                <button onclick="addProcess()">Add Process</button>
+                <button onclick="clearProcesses()">Clear All</button>
+            </div>
+            <table id="process-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Arrival Time (AT)</th>
+                        <th>Burst Time (BT)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div id="algorithm-selection">
+                <label for="algorithm">Select Algorithm:</label>
+                <select id="algorithm">
+                    <option value="FCFS">First-Come, First-Served (FCFS)</option>
+                    <option value="SJF_NonPreemptive">SJF Non-Preemptive</option>
+                    <option value="SJF_Preemptive">SJF Preemptive (SRTF)</option>
+                    <option value="RR">Round Robin (RR)</option>
+                </select>
+                <label for="quantum" id="quantum-label" style="display: none;">Quantum (q):</label>
+                <input type="number" id="quantum" value="2" min="1" style="display: none; width: 60px;">
+                <button onclick="solveScheduling()">Solve</button>
+            </div>
+        </section>
+        
+        <section id="result-section" class="hidden">
+            <h2>Results & Gantt Chart</h2>
+
+            <div id="gantt-chart-container">
+                <h3>Gantt Chart</h3>
+                <div id="gantt-chart">
+                </div>
+            </div>
+
+            <h3>Process Metrics</h3>
+            <table id="metrics-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Arrival Time (AT)</th>
+                        <th>Burst Time (BT)</th>
+                        <th>Completion Time (CT)</th>
+                        <th>Turnaround Time (TAT)</th>
+                        <th>Waiting Time (WT)</th>
+                        <th>Response Time (RT)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div id="averages">
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
