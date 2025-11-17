@@ -86,8 +86,6 @@ function solveScheduling() {
 }
 
 
-// --- Algorithm Implementations ---
-
 function FCFS(procs) {
     let currentTime = 0;
     const ganttChart = [];
@@ -194,7 +192,7 @@ function SJF_Preemptive(procs) {
             }
             
             const lastBlock = ganttChart[ganttChart.length - 1];
-            if (lastBlock && lastBlock.id === p.id) {
+            if (lastBlock && lastBlock.id === p.id && lastBlock.end === currentTime) {
                 lastBlock.end++;
             } else {
                 ganttChart.push({ id: p.id, start: currentTime, end: currentTime + 1 });
@@ -227,7 +225,6 @@ function RoundRobin(procs, quantum) {
              .forEach(p => queue.push(p));
     };
 
-    // Initialize queue with processes arrived at t=0
     updateQueue();
 
     while (completed !== n) {
@@ -255,7 +252,6 @@ function RoundRobin(procs, quantum) {
         currentTime += executeTime;
         p.remainingBT -= executeTime;
 
-        // Check for new arrivals after execution
         updateQueue();
 
         if (p.remainingBT > 0) {
@@ -271,16 +267,25 @@ function RoundRobin(procs, quantum) {
 }
 
 
-// --- Rendering Functions ---
-
 function renderGanttChart(gantt) {
     const ganttDiv = document.getElementById("gantt-chart");
     ganttDiv.innerHTML = '';
-    const totalTime = gantt.length > 0 ? gantt[gantt.length - 1].end : 0;
     
-    // Use a scaling factor to make the chart visually appealing (e.g., 30 pixels per time unit)
+    const zeroTimeMarker = document.createElement('span');
+    zeroTimeMarker.className = 'gantt-time';
+    zeroTimeMarker.textContent = '0';
+    zeroTimeMarker.style.left = '0px';
+    ganttDiv.appendChild(zeroTimeMarker);
+
+    if (gantt.length === 0) {
+        ganttDiv.style.width = '100%'; 
+        return;
+    }
+
+    const totalTime = gantt[gantt.length - 1].end;
     const scaleFactor = 30;
-    ganttDiv.style.width = `${totalTime * scaleFactor}px`;
+
+    ganttDiv.style.width = `${totalTime * scaleFactor + 50}px`;
 
     gantt.forEach(block => {
         const duration = block.end - block.start;
@@ -292,12 +297,12 @@ function renderGanttChart(gantt) {
         blockDiv.style.left = `${block.start * scaleFactor}px`;
         blockDiv.textContent = block.id;
         
+        ganttDiv.appendChild(blockDiv);
+
         const endTimeMarker = document.createElement('span');
         endTimeMarker.className = 'gantt-time';
         endTimeMarker.textContent = block.end;
         endTimeMarker.style.left = `${block.end * scaleFactor}px`;
-
-        ganttDiv.appendChild(blockDiv);
         ganttDiv.appendChild(endTimeMarker);
     });
 }
